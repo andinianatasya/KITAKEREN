@@ -10,7 +10,7 @@
 
 <body class="overflow-hidden">
     <div class="bg-bgMain bg-cover bg-center absolute inset-0 flex justify-center items-center">
-        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 mt-32">
+        <img id="catImage" src="" alt="Kucing" class="h-80 mt-32">
         <audio id="meong" src="img/meow.mp3"></audio>
     </div>
     
@@ -106,7 +106,7 @@
                 <h1 class="text-lg font-bold mb-4 text-oren">Papan Peringkat</h1>
                 <div class="relative flex flex-col space-y-4 p-4 rounded-lg">  
             <button id="programmingCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in" onclick="window.location.href='papanperingkatbahasapemograman.html'">Bahasa Pemrograman</button>
-            <button id="markupCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in" onclick="window.location.href='papanperingkatbahasamarkup.html'">Bahasa Markup Biasa</button>
+            <button id="markupCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in" onclick="window.location.href='papanperingkatbahasamarkup.html'">Bahasa Markup Standar (HTML)</button>
             <button id="tutupLeaderboard" class="text-oren font-semibold hover:text-merahTua" onclick="hideLeaderboard()">Tutup</button>
         </div>
     </div>
@@ -119,8 +119,8 @@
             <div class="bg-cream p-6 rounded-lg max-w-md w-screen text-center">
                 <h1 class="text-lg font-bold mb-4 text-oren">Pilih Bahasa</h1>
                 <div class="relative flex flex-col space-y-4 p-4 rounded-lg">   
-                    <button class="px-4 py-2 bg-oren text-orange-200 rounded hover:bg-merahTua"> <a href="bahasapemrograman.html">Bahasa Pemrograman (C/C++)</a></button>
-                    <button class="px-4 py-2 bg-oren text-orange-200 rounded hover:bg-merahTua"><a href="bahasastandar.html">Bahasa Markup Standar (HTML)</a></button>  
+                    <button class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in"> <a href="bahasapemrograman.html">Bahasa Pemrograman (C/C++)</a></button>
+                    <button class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in"><a href="bahasastandar.html">Bahasa Markup Standar (HTML)</a></button>  
                 <button id="tutupKuis" class="text-oren font-semibold hover:text-merahTua" onclick="window.location.href='ruangmain.html'">Tutup</button>
             </div>
         </div>
@@ -131,6 +131,7 @@
     <script src="js/chatglobal.js"></script>
     <script src="js/ldrboard.js"></script>
     <script src="js/interaksiKucing.js"></script>
+    <script src="js/gambarkucing.js"></script>
 
 </body>
 </html>

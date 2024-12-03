@@ -1,6 +1,7 @@
 fetch('ambilkucing.php')
     .then(response => response.text())
-    .then(data => {
-        console.log(data);
+    .then(imagePath => {
+        console.log('Path gambar:', imagePath);
+        document.getElementById('catImage').src = imagePath;
     })
-    .catch(error => console.error('Error:', error));
+.catch(error => console.error('Error:', error));

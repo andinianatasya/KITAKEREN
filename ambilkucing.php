@@ -51,8 +51,18 @@ if ($stmt->rowCount() > 0) {
 
 $path_gambar = '';
 $kondisi = '';
+$isSleeping = isset($_POST['isSleeping']) ? $_POST['isSleeping'] : false;
 
-if ($umur == 'bayi') {
+if ($isSleeping) {
+    // Mengatur gambar tidur berdasarkan umur dan motif
+    if ($umur == 'bayi') {
+        $path_gambar = $kucing['motif'] ? "img/{$kucing['motif']}/tidur_bayi.png" : 'img/tidur_bayi.png';
+    } elseif ($umur == 'anak') {
+        $path_gambar = $kucing['motif'] ? "img/{$kucing['motif']}/tidur_anak.png" : 'img/tidur_anak.png';
+    } else { 
+        $path_gambar = $kucing['motif'] ? "img/{$kucing['motif']}/tidur_dewasa.png" : 'img/tidur_dewasa.png';
+    }
+}else { if ($umur == 'bayi') {
     if ($kucing['lapar'] < 10 && $kucing['energi'] < 10) {
         $kondisi = 'ngantuk';
         $path_gambar = 'img/ngantuk_bayi.png';
@@ -82,7 +92,7 @@ if ($umur == 'bayi') {
     } else {
         $path_gambar = 'img/default_dewasa.png'; 
     }
-}
+}}
 
 if (isset($kucing['motif'])) {
     if ($kucing['motif'] == 'motif1') {
@@ -90,32 +100,32 @@ if (isset($kucing['motif'])) {
         if ($umur == 'bayi') {
             if ($kucing['lapar'] < 10 && $kucing['energi'] < 10) {
                 $kondisi = 'ngantuk';
-                $path_gambar = 'img/motif1/ngantuk_bayi.png';
+                $path_gambar = 'img/motif1/ngantuk_bayi1.png';
             } elseif ($kucing['senang'] < 10 && $kucing['sehat'] < 10) {
                 $kondisi = 'penasaran';
-                $path_gambar = 'img/motif1/penasaran_bayi.png';
+                $path_gambar = 'img/motif1/penasaran_bayi1.png';
             } else {
-                $path_gambar = 'img/motif1/default_bayi.png'; 
+                $path_gambar = 'img/motif1/default_bayi1.png'; 
             }
         } elseif ($umur == 'anak') {
             if ($kucing['lapar'] < 10 && $kucing['energi'] < 10) {
                 $kondisi = 'ngantuk';
-                $path_gambar = 'img/motif1/ngantuk_anak.png';
+                $path_gambar = 'img/motif1/ngantuk_anak1.png';
             } elseif ($kucing['senang'] < 10 && $kucing['sehat'] < 10) {
                 $kondisi = 'penasaran';
-                $path_gambar = 'img/motif1/penasaran_anak.png';
+                $path_gambar = 'img/motif1/penasaran_anak1.png';
             } else {
-                $path_gambar = 'img/motif1/default_anak.png'; 
+                $path_gambar = 'img/motif1/default_anak1.png'; 
             }
         } else { 
             if ($kucing['lapar'] < 10 && $kucing['energi'] < 10) {
                 $kondisi = 'ngantuk';
-                $path_gambar = 'img/motif1/ngantuk_dewasa.png';
+                $path_gambar = 'img/motif1/ngantuk_dewasa1.png';
             } elseif ($kucing['senang'] < 10 && $kucing['sehat'] < 10) {
                 $kondisi = 'penasaran';
-                $path_gambar = 'img/motif1/penasaran_dewasa.png';
+                $path_gambar = 'img/motif1/penasaran_dewasa1.png';
             } else {
-                $path_gambar = 'img/motif1 /default_dewasa.png'; 
+                $path_gambar = 'img/motif1 /default_dewasa1.png'; 
             }
         }
     } elseif ($kucing['motif'] == 'motif2') {
@@ -123,32 +133,32 @@ if (isset($kucing['motif'])) {
         if ($umur == 'bayi') {
             if ($kucing['lapar'] < 10 && $kucing['energi'] < 10) {
                 $kondisi = 'ngantuk';
-                $path_gambar = 'img/motif2/ngantuk_bayi.png';
+                $path_gambar = 'img/motif2/ngantuk_bayi2.png';
             } elseif ($kucing['senang'] < 10 && $kucing['sehat'] < 10) {
                 $kondisi = 'penasaran';
-                $path_gambar = 'img/motif2/penasaran_bayi.png';
+                $path_gambar = 'img/motif2/penasaran_bayi2.png';
             } else {
-                $path_gambar = 'img/motif2/default_bayi.png'; 
+                $path_gambar = 'img/motif2/default_bayi2.png'; 
             }
         } elseif ($umur == 'anak') {
             if ($kucing['lapar'] < 10 && $kucing['energi'] < 10) {
                 $kondisi = 'ngantuk';
-                $path_gambar = 'img/motif2/ngantuk_anak.png';
+                $path_gambar = 'img/motif2/ngantuk_anak2.png';
             } elseif ($kucing['senang'] < 10 && $kucing['sehat'] < 10) {
                 $kondisi = 'penasaran';
-                $path_gambar = 'img/motif2/penasaran_anak.png';
+                $path_gambar = 'img/motif2/penasaran_anak2.png';
             } else {
-                $path_gambar = 'img/motif2/default_anak.png'; 
+                $path_gambar = 'img/motif2/default_anak2.png'; 
             }
         } else { 
             if ($kucing['lapar'] < 10 && $kucing['energi'] < 10) {
                 $kondisi = 'ngantuk';
-                $path_gambar = 'img/motif2/ngantuk_dewasa.png';
+                $path_gambar = 'img/motif2/ngantuk_dewasa2.png';
             } elseif ($kucing['senang'] < 10 && $kucing['sehat'] < 10) {
                 $kondisi = 'penasaran';
-                $path_gambar = 'img/motif2/penasaran_dewasa.png';
+                $path_gambar = 'img/motif2/penasaran_dewasa2.png';
             } else {
-                $path_gambar = 'img/motif2/default_dewasa.png'; 
+                $path_gambar = 'img/motif2/default_dewasa2.png'; 
             }
         }
     } elseif ($kucing['motif'] == 'motif3') {
@@ -156,32 +166,32 @@ if (isset($kucing['motif'])) {
         if ($umur == 'bayi') {
             if ($kucing['lapar'] < 10 && $kucing['energi'] < 10) {
                 $kondisi = 'ngantuk';
-                $path_gambar = 'img/motif3/ngantuk_bayi.png';
+                $path_gambar = 'img/motif3/ngantuk_bayi3.png';
             } elseif ($kucing['senang'] < 10 && $kucing['sehat'] < 10) {
                 $kondisi = 'penasaran';
-                $path_gambar = 'img/motif3/penasaran_bayi.png';
+                $path_gambar = 'img/motif3/penasaran_bayi3.png';
             } else {
-                $path_gambar = 'img/motif3/default_bayi.png'; 
+                $path_gambar = 'img/motif3/default_bayi3.png'; 
             }
         } elseif ($umur == 'anak') {
             if ($kucing['lapar'] < 10 && $kucing['energi'] < 10) {
                 $kondisi = 'ngantuk';
-                $path_gambar = 'img/motif3/ngantuk_anak.png';
+                $path_gambar = 'img/motif3/ngantuk_anak3.png';
             } elseif ($kucing['senang'] < 10 && $kucing['sehat'] < 10) {
                 $kondisi = 'penasaran';
-                $path_gambar = 'img/motif3/penasaran_anak.png';
+                $path_gambar = 'img/motif3/penasaran_anak3.png';
             } else {
-                $path_gambar = 'img/motif3/default_anak.png'; 
+                $path_gambar = 'img/motif3/default_anak3.png'; 
             }
         } else { 
             if ($kucing['lapar'] < 10 && $kucing['energi'] < 10) {
                 $kondisi = 'ngantuk';
-                $path_gambar = 'img/motif3/ngantuk_dewasa.png';
+                $path_gambar = 'img/motif3/ngantuk_dewasa3.png';
             } elseif ($kucing['senang'] < 10 && $kucing['sehat'] < 10) {
                 $kondisi = 'penasaran';
-                $path_gambar = 'img/motif3/penasaran_dewasa.png';
+                $path_gambar = 'img/motif3/penasaran_dewasa3.png';
             } else {
-                $path_gambar = 'img/motif3/default_dewasa.png'; 
+                $path_gambar = 'img/motif3/default_dewasa3.png'; 
             }
         }
     } else {
@@ -204,11 +214,10 @@ $stmt->bindParam(':path_gambar', $path_gambar, PDO::PARAM_STR);
 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 
 if ($stmt->execute()) {
-    echo "Data umur dan path_gambar berhasil disimpan.";
+    echo "";
 } else {
-    echo "Gagal menyimpan data umur dan path_gambar.";
+    echo "";
 }
 
-echo "<h2>kondisi Kucing: " . htmlspecialchars($kondisi) . "</h2>";
-echo "<img src='" . htmlspecialchars($path_gambar) . "' alt='Gambar Kucing'>";
+echo $path_gambar;
 ?>
