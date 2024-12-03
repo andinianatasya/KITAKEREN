@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             break;
         case 'mandi1':
         case 'mandi2':
-            $exp += 3;
+            $exp += 200;
             break;
         case 'tidur':
             $exp += 2;
