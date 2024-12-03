@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/logo(1).png" type="image/png">
+    <title>Ruang Tamu</title>
+</head>
+
+<body class="overflow-hidden">
+    <div class="bg-bgBeranda bg-cover bg-center absolute inset-0 flex justify-center items-center">
+        <img id="catImage" src="<?php echo htmlspecialchars($path_gambar); ?>" alt="Kucing" class="h-80 mt-20 md:mt-56">
+        <audio id="meong" src="img/meow.mp3"></audio>
+    </div>
+
+    <nav class="fixed top-0 left-0 right-0 bg-oren p-2">
+        <ul class="flex justify-around items-center">
+
+            <li class="text-center hover:opacity-50 duration-300">
+                <a href="profil.php?ruangan=beranda.html" class="flex items-center">
+                    <img src="img/profil.svg" alt="Profil Icon" class="flex flex-col items-center w-10 h-10 mb-1">
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Profil</span>
+                </a>
+                
+            </li>
+
+            <li class="text-center hover:opacity-50 duration-300">
+                <a href="#shop" class="flex items-center">
+                    <img id="shopImage" src="img/icontoko.png" alt="Shop Icon" class="w-10 h-10 mb-1">
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Toko</span>
+                </a>
+                
+            </li>
+
+            <li class="text-center">
+                <button id="dropdownButton" class="flex items-center hover:opacity-50 duration-300">
+                    <img src="img/iconruangan.png" alt="ruangan" class="w-10 h-10 mb-1">
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruangan</span>
+                </button>
+            
+                <div>
+                    <ul id="lokasidropdown" class="bg-oren rounded-md mt-4 absolute rounded-me md:w-40 w-20 p-2 0focus:outline-orenTua hidden">
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="beranda.html" class="flex items-center" class="">
+                                    <img src="img/iconruangtamu.png" alt="Ruang Makan" class="w-16 mb-1">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tamu</span>
+                                </a>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangmkn.php" class="flex items-center">
+                                    <img src="img/iconmakan.png" alt="Ruang Makan" class="w-16 mb-1">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Makan</span>
+                                </a>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangtdr.html" class="flex items-center">
+                                    <img class="w-16 mb-1" src="img/icontidur.png" alt="Ruang Tidur">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tidur</span>
+                                </a>
+                            </button>                 
+                        </li>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangmain.html" class="flex items-center">
+                                    <img class="w-16 mb-1" src="img/iconmain.png" alt="Ruang Main">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Main</span>
+                                </a>
+                            </button>                                
+                        </li>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangmandi.html" class="flex items-center">
+                                    <img class="w-16 mb-1" src="img/iconmandi.png" alt="">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Mandi</span>
+                                </a>
+                            </button>                               
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="text-center hover:opacity-50 duration-300">
+                <a href="#" class="flex items-center">
+                    <img id="bukaChat" src="img/chat.svg" alt="Chat Icon" class="w-10 mb-1">
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Obrolan Global</span>
+                </a>
+                
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="fixed bottom-0 left-0 right-0 py-4 px-8">
+        <div class="flex justify-center space-x-8 md:space-x-72">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
+                        <img src="img/barsenang.png" alt="Kesenangan" class="rounded-full">
+                    </div>
+
+                    <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
+                        <div id="status_bar_senang" class="h-full bg-green-600 rounded status_bar"></div>
+                        <span id="senangBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
+                    </div>
+                </div>
+
+                <!-- Bar dan gambar Lapar -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
+                        <img src="img/barlapar.png" alt="Kelaparan" class="rounded-full">
+                    </div>
+
+                    <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
+                        <div id="status_bar_lapar" class="h-full bg-green-600 rounded status_bar"></div>
+                        <span id="laparBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
+                        <img src="img/barsehat.png" alt="Kesehatan" class="rounded-full">
+                    </div>
+                    <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
+                        <div id="status_bar_sehat" class="h-full bg-green-500 rounded status_bar"></div>
+                        <span id="sehatBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
+                        <img src="img/barenergi.png" alt="Energi" class="rounded-full">
+                    </div>
+                    <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
+                        <div id="status_bar_energi" class="h-full bg-green-500 rounded status_bar"></div>
+                        <span id="energiBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="belanja" class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm hidden">
+        <div class="flex items-center justify-center h-full">
+            <div class="bg-gradient-to-bl from-merah to-cream p-5 rounded-lg max-w-xl w-full text-center m-5 md:m-0">
+                <div class="flex items-center gap-2">
+                    <img src="img/koin.svg" alt="Coin" class="h-8">
+                    <span id="jumlahKoin" class="text-white text-xs font-semibold"></span>
+                </div>
+                <div id="menuUtama" class="grid grid-cols-2 gap-4">
+                    <div>
+                        <img src="img/makan.svg" alt="Menu Makan" class="w-24 h-24 mx-auto mb-2">
+                        <button id="btnMakanan" class="px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Makanan</button>
+                    </div>
+                    <div>
+                        <img src="img/baju.svg" alt="Menu Kustom" class="w-24 h-24 mx-auto mb-2">
+                        <button id="btnKustom" class="px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Motif</button>
+                    </div>
+                </div>
+
+                <!-- Menu Makanan-->
+                <div id="menuMakan" class="hidden">
+
+                    <!-- <div class="grid grid-cols-2 md:grid-cols-5 gap-4 overflow-y-auto max-h-[400px]"> -->
+                    <div class="grid grid-cols-4">
+                        <div class="flex flex-col items-center">
+                            <img src="img/makanan1.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="1" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25">25 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/minum.svg" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="7" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25">15 Koin</>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/makanan3.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="3" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25">25 Koin</>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/minuman1.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="8" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="15">15 Koin</>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/minuman2.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="9" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="15">15 Koin</>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/obat1.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="2" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">20 Koin</>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/obat2.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="10" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">20 Koin</>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/sayur.svg" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="5" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">25 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/ikan.svg" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="4" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">25 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/obat3.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="11"  class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">20 Koin</button>
+                        </div>
+                    </div>
+                    <button id="backToMenuMakan" class="mt-4 px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Kembali</button>
+                </div>
+                
+    
+                <!-- Menu Kustom -->
+                <div id="menuKustom" class="hidden">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="flex flex-col items-center">
+
+                            <img src="img/Motif1.png" alt="Kustom 1" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="100" data-motif="1">100 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/Motif2.png" alt="Kustom 2" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="100" data-motif="2">100 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/Motif3.png" alt="Kustom 3" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="100" data-motif="3">100 Koin</button>
+
+                        </div>
+                    </div>
+                    <button id="backToMenu" class="mt-4 px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Kembali</button>
+                </div>
+                <button id="tutupBelanja" class="mt-4 px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Tutup</button>
+            </div>
+        </div>
+    </div> 
+
+
+    <script src="js/index.js"></script>
+    <script src="js/chatglobal.js"></script>
+    <script src="js/bar.js"></script>
+    <script src="js/belanja.js"></script>
+    <script src="js/interaksiKucing.js"></script>
+    <script src="js/koin.js"></script>
+    <script src="js/updateBarEnergi.js"></script>
+    <script src="js/updateBarLapar.js"></script>
+    <script src="js/updateBarSehat.js"></script>
+    <script src="js/updateBarSenang.js"></script>
+    <script src="js/gambarkucing.js"></script>
+</body>
+</html>

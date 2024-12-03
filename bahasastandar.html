@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <title>Latihan Coding HTML</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/logo(1).png" type="image/png">
+</head>
+<body class="bg-bgMain backdrop-blur-sm flex items-center justify-center h-screen overflow-hidden bg-cover bg-center">
+    <div class="mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-8 text-center text-merah bg-orange-300 rounded-lg">Latihan Coding HTML</h1>
+        <div id="coinDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Koin: 0</div>
+        <div id="rankDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Peringkat: Pemula</div>
+    <div id="timer" class="text-red-600 font-bold text-center mb-5">60 detik tersisa</div>
+    <button id="notification" class="m-4 p-4 text-white text-center rounded-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hidden"></button>
+    <div id="questionContainer" class="bg-orange-300 rounded-lg shadow-lg p-6 mb-8 relative"></div>
+</div>
+
+     <div id="rulesOverlay" class="fixed inset-0 flex items-center justify-center  min-h-screen">
+        <div class="bg-white p-10 rounded-lg shadow-lg w-11/12 max-w-md text-center">
+            <h2 class="text-2xl font-bold mb-4 text-red-800">Aturan Bermain</h2>
+            <p class="mb-4">Selamat datang di kuis HTML! Berikut adalah cara bermain:</p>
+            <ul class="list-disc pl-5 mb-4 text-left">
+                <li>Anda akan diberikan pertanyaan terkait HTML.</li>
+                <li>Isi jawaban Anda di kolom yang disediakan dengan melengkapi kode yang kosong.</li>
+                <li>Anda akan mendapatkan 10 koin untuk setiap jawaban yang benar.</li>
+                <li>Jawaban yang salah akan mengurangi waktu 5 detik.</li>
+                <li>Setiap jawaban yang benar akan menambah waktu 5 detik, hingga maksimal 60 detik total.</li>
+                <li>Permainan berakhir ketika waktu habis.</li>
+                <li>Semangat dan selamat bermain!</li>
+            </ul>
+            <button id="startButton" class="bg-orange-400 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded transition duration-200">
+                Oke, Saya Mengerti
+            </button>
+        </div>
+    </div>
+
+    <script src="js/bar.js"></script>
+    <script src="js/updateBarSenang.js"></script>
+    <script>
+        let currentQuestion = 0;
+        let coins = 0;
+        let timeLeft = 60; 
+        let timer;
+ 
+        const questions = [
+        { "question": "Apa tag untuk membuat judul paling besar di HTML?", "answer": "<h1>" },
+    { "question": "Apa tag untuk membuat paragraf di HTML?", "answer": "<p>" },
+    { "question": "Apa tag untuk membuat daftar tidak terurut,di mana setiap item ditandai dengan simbol?", "answer": "<ul>" },
+    { "question": "Apa tag untuk membuat tombol?", "answer": "<button>" },
+    { "question": "Apa atribut yang digunakan untuk menetapkan alamat URL dalam tag anchor?", "answer": "href" },
+    { "question": "Apa tag untuk menampilkan gambar di HTML?", "answer": "<img>" },
+    { "question": "Apa tag yang digunakan untuk membuat form di HTML?", "answer": "<form>" },
+    { "question": "Apa tag untuk membuat tabel di HTML?", "answer": "<table>" },
+    { "question": "Apa tag untuk membuat link di HTML?", "answer": "<a>" },
+    { "question": "Apa tag untuk menampilkan teks tebal di HTML?", "answer": "<strong>" },
+    { "question": "Apa tag untuk menampilkan teks miring di HTML?", "answer": "<em>" },
+    { "question": "Apa tag yang digunakan untuk membuat daftar terurut,dimana setiap item nya diberi nomor?", "answer": "<ol>" },
+    { "question": "Apa tag untuk menyisipkan video di HTML?", "answer": "<video>" },
+    { "question": "Apa tag untuk menyisipkan audio di HTML?", "answer": "<audio>" },
+    { "question": "Apa atribut yang digunakan untuk menetapkan lebar gambar?", "answer": "width" },
+    { "question": "Apa atribut yang digunakan untuk menetapkan tinggi gambar?", "answer": "height" }
+];
+
+
+
+        function shuffleQuestions(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('questionContainer').innerHTML = `
+                <p class="mb-4">${question.question}</p>
+                <textarea id="answer" placeholder="Tulis jawaban di sini..." class="w-full h-12 mb-2 p-2 border border-gray-400 rounded-md"></textarea>
+                <button onclick="checkAnswer()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-200">
+                    Kirim Jawaban
+                </button>
+            `;
+            document.getElementById('notification').classList.add('hidden');
+ startTimer();
+        }
+
+        function startTimer() {
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = `${timeLeft} detik tersisa`;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    showFinalScore();
+                }
+            }, 1000);
+        }
+
+        function checkAnswer() {
+            clearInterval(timer);
+            const userAnswer = document.getElementById('answer').value.trim();
+            if (userAnswer === questions[currentQuestion].answer) {
+                coins += 10;
+                showNotification("Jawaban Anda benar!", true);
+                timeLeft = Math.min(timeLeft + 5, 60);
+            } else {
+                showNotification(`Jawaban Anda salah! Jawaban yang benar adalah: ${questions[currentQuestion].answer}`, false);
+                timeLeft = Math.max(timeLeft - 5, 0);
+            }
+            updateDisplays();
+            setTimeout(nextQuestion, 2000);
+        }
+
+        function showNotification(message, isCorrect) {
+            const notificationElement = document.getElementById('notification');
+            notificationElement.innerText = message;
+            notificationElement.style.backgroundColor = isCorrect ? '#2ecc71' : '#e74c3c';
+            notificationElement.classList.remove('hidden');
+            setTimeout(() => {
+                notificationElement.classList.add('hidden');
+            }, 2000);
+        }
+
+        function updateDisplays() {
+            document.getElementById('coinDisplay').innerText = `Koin: ${coins}`;
+            const rank = coins >= 30 ? "Ahli" : coins >= 20 ? "Menengah" : coins >= 10 ? "Pemula" : "Pemula";
+            document.getElementById('rankDisplay').innerText = `Peringkat: ${rank}`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion >= questions.length) {
+                showFinalScore();
+            } else {
+                loadQuestion();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('questionContainer').innerHTML = `
+            <h2 class=" text-3xl font-bold mb-4 text-center text-red-900">Kuis Selesai!</h2>
+            <p class="mb-4 text-red-900 font-medium">Koin: ${coins}</p>
+            <button onclick="location.href='ruangmain.html'" class="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded transition duration-200 mr-4">
+                Kembali ke Ruang Main
+            </button>
+            <div id="notification" class="hidden"></div>   
+        `;
+            localStorage.setItem('coins', coins);
+            saveCoinsToDatabase();
+        }
+        function saveCoinsToDatabase() {
+            fetch('simpanKoin.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ koin: coins }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+
+        document.getElementById('startButton').addEventListener('click', () => {
+            document.getElementById('rulesOverlay').style.display = 'none';
+            shuffleQuestions(questions);
+            loadQuestion();
+        });
+    </script>
+</body>
+</html>
