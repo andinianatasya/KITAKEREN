@@ -61,16 +61,6 @@ beliButtons.forEach(button => {
     });
 });
 
-// Event listener untuk tombol beli
-// document.querySelectorAll(".beliBtn").forEach(button => {
-//     button.addEventListener("click", function() {
-//         if (handlePurchase(this)) {
-//             const motif = this.getAttribute("data-motif");
-//             if (motif) {
-//                 catImage.src = `img/motif${motif}/default_bayi${motif}.png`;
-//             }
-//         }
-//     });
-// });
+
 
 

@@ -102,5 +102,5 @@ document.getElementById('lampu').addEventListener('click', function() {
     }
 
     console.log('Button Tidur clicked');
-    updateEnergi(15);
+    updateEnergi(5);
 });

@@ -3,7 +3,7 @@ session_start();
 
 $servername = "localhost";
 $username = "postgres";
-$password = "Miskagi8282";
+$password = "Medan2005";
 $dbname = "Kitcat";
 
 $conn = pg_connect("host=$servername dbname=$dbname user=$username password=$password");
@@ -12,10 +12,8 @@ if (!$conn) {
     die("Connection failed: " . pg_last_error());
 }
 
-// Mendapatkan id user dari session
 $user_id = $_SESSION['user_id'];
 
-// AJAX Handler untuk menangani POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produk'])) {
     $id_produk = intval($_POST['id_produk']);
 
@@ -71,7 +69,7 @@ while ($row = pg_fetch_assoc($result)) {
 
 <body class="overflow-hidden">
     <div class="bg-bgDapur bg-cover bg-center absolute inset-0 flex justify-center items-center">
-        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 mt-20 cursor-pointer">
+        <img id="catImage" src="<?php echo htmlspecialchars($path_gambar); ?>" alt="Kucing" class="h-80 mt-20 cursor-pointer">
         <audio id="meong" src="img/meow.mp3"></audio>
     </div>
 
@@ -96,7 +94,7 @@ while ($row = pg_fetch_assoc($result)) {
                         <li>
                             <button class="hover:opacity-50 duration-300">
                                 <a href="beranda.html" class="flex items-center" class="">
-                                    <img src="img/beranda.svg" alt="Ruang Makan" class="w-16 mb-1">
+                                    <img src="img/beranda.svg" alt="Ruang Tamu" class="w-16 mb-1">
                                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tamu</span>
                                 </a>
                             </button>
@@ -155,7 +153,7 @@ while ($row = pg_fetch_assoc($result)) {
             </button>
 
             <button id="2" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan" disabled onclick="updateExp('makanan2')">
-                <img id="obatButton1" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat1.png" alt="obat">
+                <img id="obatButton1" class="obat rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat1.png" alt="obat">
             </button> 
 
             <button id="3" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan" disabled onclick="updateExp('makanan3')">
@@ -183,11 +181,11 @@ while ($row = pg_fetch_assoc($result)) {
             </button> 
 
             <button id="10" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan" disabled onclick="updateExp('makanan10')">
-                <img id="obatButton2" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat2.png" alt="obat">
+                <img id="obatButton2" class="obat rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat2.png" alt="obat">
             </button>   
           
             <button id="11" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan " disabled  onclick="updateExp('makanan11')">
-                <img id="obatButton3" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat3.png" alt="obat">
+                <img id="obatButton3" class="obatrounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat3.png" alt="obat">
             </button>   
         </div>
     </div>
@@ -211,7 +209,7 @@ while ($row = pg_fetch_assoc($result)) {
         fetch('', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: id_produk=${id_produk}
+            body: `id_produk=${id_produk}`,
         })
         .then(response => response.json())
         .then(data => {
@@ -234,6 +232,6 @@ while ($row = pg_fetch_assoc($result)) {
     <script src="js/updateBarSehat.js"></script>
     <script src="js/bar.js"></script>
     <script src="js/exp.js"></script>
-    
+    <script src="js/gambarkucing.js"></script>
 </body>
 </html>

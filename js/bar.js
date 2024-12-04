@@ -54,7 +54,7 @@ function updateStatusOnServer(lapar, sehat, energi, senang) {
     });
 }
 
-setInterval(decreaseAllStatusBars, 5000);
+setInterval(decreaseAllStatusBars, 1000);
 
 window.onload = function() {
     fetch('ambilStatusBar.php')
