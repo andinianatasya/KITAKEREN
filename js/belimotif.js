@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const beliButtons = document.querySelectorAll('.belimotif');
+    const beliMotif = document.querySelectorAll('.belimotif');
 
-    beliButtons.forEach(button => {
+    beliMotif.forEach(button => {
         button.addEventListener('click', function() {
-            const motif = this.getAttribute("data-motif"); // Ambil motif dari atribut data
-            const harga = parseInt(this.getAttribute("data-harga")); // Ambil harga dari atribut data
+            const motif = this.getAttribute("data-motif");
+            const harga = parseInt(this.getAttribute("data-harga"));
 
-            // Pastikan harga valid
             if (isNaN(harga) || harga <= 0) {
                 alert("Harga tidak valid. Silakan periksa data item.");
                 return;
@@ -14,8 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log("Button clicked, motif: " + motif + ", harga: " + harga);
 
-            // Kirim data ke PHP
-            fetch('belimotif.php', {
+            fetch('belimotif1.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -24,10 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => response.json())
             .then(data => {
+                console.log('Response:', data);
                 alert(data.message);
                 if (data.status === 'sukses') {
-                    // Update tampilan koin atau gambar kucing jika perlu
+                    console.log('Pembelian berhasil, memuat ulang halaman...');
                     tampilkanKoin();
+                    location.reload();
                 }
             })
             .catch(error => {

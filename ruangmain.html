@@ -18,11 +18,10 @@
         <ul class="flex justify-around items-center">
 
             <li class="text-center hover:opacity-50 duration-300">
-                <a href="profil.php?ruangan=beranda.html" class="flex items-center">
+                <a href="profil.php?ruangan=ruangmain.html" class="flex items-center">
                     <img src="img/profil.svg" alt="Profil Icon" class="flex flex-col items-center w-10 h-10 mb-1">
                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Profil</span>
-                </a>
-                
+                </a>           
             </li>
 
             <li class="text-center">
@@ -90,8 +89,9 @@
     <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
         <div class="flex space-x-5">
             <button id="leaderboardButton" class="w-16 h-16 shadow-cartoon rounded-full">
-                <a href="#" ></a>
+                <a href="papanPeringkat.php" >
                 <img src="img/iconleaderboard.png" alt="leaderboard" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300">
+                </a>
             </button>
             <buttonn id="questionImage" class="w-16 h-16 shadow-cartoon rounded-full">
                 <a href="#"><img src="img/iconkuis.png" alt="tes" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300"></a>
@@ -99,21 +99,6 @@
         </div>
     </div>
 
-    <!-- Leaderboard Section -->
-    <div id="leaderboardSection" class="fixed inset-0 bg-merahTua bg-opacity-30 backdrop-blur-sm hidden">
-        <div class="flex items-center justify-center h-screen">
-            <div class="bg-cream p-6 rounded-lg max-w-md w-screen text-center">
-                <h1 class="text-lg font-bold mb-4 text-oren">Papan Peringkat</h1>
-                <div class="relative flex flex-col space-y-4 p-4 rounded-lg">  
-            <button id="programmingCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in" onclick="window.location.href='papanperingkatbahasapemograman.html'">Bahasa Pemrograman</button>
-            <button id="markupCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in" onclick="window.location.href='papanperingkatbahasamarkup.html'">Bahasa Markup Standar (HTML)</button>
-            <button id="tutupLeaderboard" class="text-oren font-semibold hover:text-merahTua" onclick="hideLeaderboard()">Tutup</button>
-        </div>
-    </div>
-        </div>
-    </div>
-
-    <!-- Quiz Section -->
     <div id="quizOverlay" class="fixed inset-0 bg-merahTua bg-opacity-30 backdrop-blur-sm hidden">
         <div class="flex items-center justify-center h-screen">
             <div class="bg-cream p-6 rounded-lg max-w-md w-screen text-center">
@@ -126,10 +111,9 @@
         </div>
     </div>
 
-
     <script src="js/index.js"></script>
     <script src="js/chatglobal.js"></script>
-    <script src="js/ldrboard.js"></script>
+    <script src="js/kuis.js"></script>
     <script src="js/interaksiKucing.js"></script>
     <script src="js/gambarkucing.js"></script>
 

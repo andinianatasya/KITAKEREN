@@ -1,7 +1,8 @@
-const catImage = document.getElementById('catImage');
+(() => {
+    const showSabunButton = document.getElementById("showSabunButton");
+    const sabunOverlay = document.getElementById("sabunOverlay");
 
-        function changeToSabun() {
-        catImage.src = "img/kucing_sabun.png";
-    }
-
-    document.getElementById('showSabunButton').addEventListener('click', changeToSabun);
+    showSabunButton.addEventListener("click", function() {
+        sabunOverlay.classList.toggle("hidden");
+    });
+})();

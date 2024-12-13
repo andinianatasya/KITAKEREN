@@ -1,8 +1,8 @@
 <?php
 session_start();
 $host = "localhost";
-$dbname = "Kitcat";
-$user = "postgres";
+$dbname = "anata_kitcat";
+$user = "anata_user";
 $pass = "Medan2005";
 
 try {
@@ -22,22 +22,19 @@ try {
                 window.location.href = 'login.html';
             </script>";
         } else {
-            // Insert data pengguna ke tabel userkitcat dan ambil id yang baru saja dibuat
             $stmt = $pdo->prepare("INSERT INTO userkitcat (username, password) VALUES (:username, :password) RETURNING id");
             $stmt->execute([
                 'username' => $username,
                 'password' => $password
             ]);
-            $userId = $stmt->fetchColumn(); // Mengambil ID yang baru saja dimasukkan
-
-            // Insert data kucing yang terhubung dengan pengguna baru
+            $userId = $stmt->fetchColumn();
             $stmt = $pdo->prepare("INSERT INTO kucing (id, umur, kondisi, path_gambar) 
                                     VALUES (:id, :umur, :kondisi, :path_gambar)");
             $stmt->execute([
-                'id' => $userId,             // Menggunakan id pengguna yang baru saja dibuat
-                'umur' => 'bayi',            // Default umur
-                'kondisi' => 'default',      // Default kondisi
-                'path_gambar' => 'img/default_bayi.png' // Default gambar
+                'id' => $userId,
+                'umur' => 'bayi',           
+                'kondisi' => 'default',      
+                'path_gambar' => 'img/default_bayi.png' 
             ]);
 
             echo "<script>

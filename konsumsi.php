@@ -2,9 +2,9 @@
 session_start();
 
 $servername = "localhost";
-$username = "postgres";
+$username = "anata_user";
 $password = "Medan2005";
-$dbname = "Kitcat";
+$dbname = "anata_kitcat";
 
 $conn = pg_connect("host=$servername dbname=$dbname user=$username password=$password");
 
@@ -12,10 +12,8 @@ if (!$conn) {
     die("Connection failed: " . pg_last_error());
 }
 
-// Mendapatkan id user dari session
 $user_id = $_SESSION['user_id'];
 
-// AJAX Handler untuk menangani POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produk'])) {
     $id_produk = intval($_POST['id_produk']);
 
@@ -42,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produk'])) {
     exit;
 }
 
-// Query untuk menampilkan data
 $query = "SELECT id_produk FROM penyimpanan WHERE id = $user_id";
 $result = pg_query($conn, $query);
 

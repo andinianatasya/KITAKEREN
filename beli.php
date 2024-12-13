@@ -3,8 +3,8 @@ session_start();
 header('Content-Type: application/json');
 
 $host = "localhost";
-$dbname = "Kitcat";
-$user = "postgres";
+$dbname = "anata_kitcat";
+$user = "anata_user";
 $password = "Medan2005"; 
 
 try {
@@ -14,7 +14,6 @@ try {
     echo json_encode(["status" => "terjadi kesalahan", "message" => "Koneksi gagal: " . $e->getMessage()]);
     exit;
 }
-
 
 function beliItems($userId, $id_produk, $harga) {
     global $pdo;

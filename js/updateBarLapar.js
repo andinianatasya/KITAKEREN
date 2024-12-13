@@ -14,10 +14,10 @@ function updateLapar(amount) {
                 return;
             }
 
-            if (currentLapar < 200) {
+            if (currentLapar < 100) {
                 currentLapar += amount;
-                if (currentLapar > 200) {
-                    currentLapar = 200; 
+                if (currentLapar > 100) {
+                    currentLapar = 100; 
                     alert("Bar lapar sudah penuh!");
                 }
 
@@ -53,35 +53,31 @@ function updateStatusOnServer(lapar, sehat, energi, senang) {
 }
 
 
-document.getElementById('makanButton1').addEventListener('click', function() {
-    console.log('Button Makan 1 clicked');
-    updateLapar(20);
+document.querySelectorAll('[id^="makanButton"]').forEach(button => {
+    button.addEventListener('click', function(event) {
+        if (button.disabled) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            console.log(`${button.id} is disabled and cannot be clicked.`);
+            return;
+        }
+
+        console.log(`${button.id} clicked`);
+        updateLapar(20);
+    });
 });
-document.getElementById('makanButton2').addEventListener('click', function() {
-    console.log('Button Makan 2 clicked');
-    updateLapar(20);
-});
-document.getElementById('makanButton3').addEventListener('click', function() {
-    console.log('Button Makan 3 clicked');
-    updateLapar(20);
-});
-document.getElementById('makanButton4').addEventListener('click', function() {
-    console.log('Button Makan 4 clicked');
-    updateLapar(20);
-});
-document.getElementById('makanButton5').addEventListener('click', function() {
-    console.log('Button Makan 5 clicked');
-    updateLapar(20);
-});
-document.getElementById('minumButton1').addEventListener('click', function() {
-    console.log('Button Minum 1 clicked');
-    updateLapar(5);
-});
-document.getElementById('minumButton2').addEventListener('click', function() {
-    console.log('Button Minum 2 clicked');
-    updateLapar(5);
-});
-document.getElementById('minumButton3').addEventListener('click', function() {
-    console.log('Button Minum 3 clicked');
-    updateLapar(5);
+
+
+document.querySelectorAll('[id^="minumButton"]').forEach(button => {
+    button.addEventListener('click', function() {
+        if (button.disabled) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            console.log(`${button.id} is disabled and cannot be clicked.`);
+            return;
+        }
+
+        console.log(`${button.id} clicked`);
+        updateLapar(5);
+    });
 });

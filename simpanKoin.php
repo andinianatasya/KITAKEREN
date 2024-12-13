@@ -3,8 +3,8 @@ session_start();
 header('Content-Type: application/json');
 
 $host = "localhost";
-$dbname = "Kitcat";
-$user = "postgres";
+$dbname = "anata_kitcat";
+$user = "anata_user";
 $password = "Medan2005"; 
 
 try {
@@ -15,11 +15,16 @@ try {
     exit;
 }
 
-//ini fungsi nya untk simpan koinny
 function saveCoins($userId, $koin) {
     global $pdo;
 
-    $stmt = $pdo->prepare("UPDATE userkitcat SET koin = koin + :koin WHERE id = :user_id");
+    $stmt = $pdo->prepare("
+    UPDATE userkitcat 
+    SET koin = koin + :koin, 
+        maxpoint = GREATEST(maxpoint, koin + :koin)
+    WHERE id = :user_id
+    ");
+
     $stmt->bindParam(':koin', $koin, PDO::PARAM_INT);
     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
 
@@ -30,7 +35,6 @@ function saveCoins($userId, $koin) {
     }
 }
 
-//klo ini untuk mengambil koin biar bisa ditampilkan di shopny
 function getCoins($userId) {
     global $pdo;
 

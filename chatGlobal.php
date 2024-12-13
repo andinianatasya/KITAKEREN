@@ -1,8 +1,8 @@
 <?php
 session_start();
 $host = "localhost";
-$dbname = "Kitcat";
-$user = "postgres";
+$dbname = "anata_kitcat";
+$user = "anata_user";
 $password = "Medan2005"; 
 try {
     $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
@@ -49,6 +49,7 @@ $stmt_chat = $pdo->prepare($query_chat);
 $stmt_chat->execute();
 $result_chat = $stmt_chat->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,10 +61,10 @@ $result_chat = $stmt_chat->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="overflow-hidden">
-    <div class="h-screen bg-bgProfil bg-cover bg-center flex items-center justify-center">
+    <div class="h-screen bg-bgGlobalchat bg-cover bg-center flex items-center justify-center">
         <div id="chatGlobal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 backdrop-blur-sm">
             <div class="bg-oren rounded-lg shadow-lg w-11/12 md:w-1/2 lg:w-1/3 p-4 relative">
-                <button id="tutupChat" class="absolute top-2 right-2 text-orange-200 hover:text-orange-400">&times;</button>
+                <button id="tutupChat" class="absolute top-2 right-2 text-orange-200 hover:text-orange-400 text-4xl">&times;</button>
                 <h2 class="text-xl font-semibold text-center mb-4 text-orange-200">Obrolan Global</h2>
                 <div id="chatContent" class="max-h-60 overflow-y-auto mb-4">
                     <?php foreach ($result_chat as $chat_data): ?>

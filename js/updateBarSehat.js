@@ -52,10 +52,6 @@ function updateStatusOnServer(lapar, sehat, energi, senang) {
     });
 }
 
-// Mengambil semua elemen dengan class 'obat'
-// 
-
-
 document.getElementById('obatButton1').addEventListener('click', function() {
     console.log('Button Obat 1 clicked');
     updateSehat(20);

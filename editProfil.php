@@ -2,9 +2,9 @@
 session_start();
 
 $host = "localhost";
-$user = "postgres";
+$user = "anata_user";
 $pass = "Medan2005"; 
-$dbname = "Kitcat"; 
+$dbname = "anata_kitcat"; 
 
 try {
     $conn = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
@@ -31,12 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama_baru = htmlspecialchars(trim($_POST['nama']));
     $avatar = isset($_POST['avatar']) ? htmlspecialchars(trim($_POST['avatar'])) : null;
 
-    $max_length = 10;
+    $max_length = 15;
     $error = false;
     
     if (strlen($nama_baru) > $max_length) {
         $_SESSION['message'] = "Error: Nama pengguna tidak boleh lebih dari $max_length karakter.";
-        $error = true; // Set flag kesalahan
+        $error = true;
     } else if (!empty($nama_baru) && isset($_SESSION['user_id'])) {
         $sql = "UPDATE userkitcat SET nama_profil = :nama_profil WHERE id = :user_id"; 
         $stmt = $conn->prepare($sql);

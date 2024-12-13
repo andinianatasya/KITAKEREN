@@ -1,8 +1,8 @@
 <?php
 session_start();
 $host = "localhost";
-$dbname = "Kitcat";
-$user = "postgres";
+$dbname = "anata_kitcat";
+$user = "anata_user";
 $password = "Medan2005"; 
 
 try {
@@ -56,7 +56,6 @@ $kondisi = '';
 $isSleeping = isset($_POST['isSleeping']) ? $_POST['isSleeping'] : false;
 
 if ($isSleeping) {
-    // Mengatur gambar tidur berdasarkan umur dan motif
     if ($umur == 'bayi') {
         $path_gambar = $kucing['motif'] ? "img/{$kucing['motif']}/tidur_bayi.png" : 'img/tidur_bayi.png';
     } elseif ($umur == 'anak') {
@@ -65,7 +64,6 @@ if ($isSleeping) {
         $path_gambar = $kucing['motif'] ? "img/{$kucing['motif']}/tidur_dewasa.png" : 'img/tidur_dewasa.png';
     }
 } else {
-    // Kembalikan ke path gambar default
     if ($umur == 'bayi') {
         $path_gambar = $kucing['motif'] ? "img/{$kucing['motif']}/default_bayi.png" : 'img/default_bayi.png';
     } elseif ($umur == 'anak') {

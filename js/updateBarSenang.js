@@ -58,11 +58,3 @@ document.getElementById('startButton').addEventListener('click', function(event)
     updateSenang(25);
     
 });
-
-// document.getElementById('senang2').addEventListener('click', function(event) {
-//     event.preventDefault();
-//     console.log('Button Senang 2 clicked');
-//     updateSenang(10);
-    
-//     window.location.href = "bahasastandar.html";
-// });

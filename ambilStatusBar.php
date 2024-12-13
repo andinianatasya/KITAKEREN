@@ -2,9 +2,9 @@
 session_start();
 
 $servername = "localhost";
-$username = "postgres";
+$username = "anata_user";
 $password = "Medan2005";
-$dbname = "Kitcat";
+$dbname = "anata_kitcat";
 
 $conn = pg_connect("host=$servername dbname=$dbname user=$username password=$password");
 

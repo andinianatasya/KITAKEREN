@@ -32,8 +32,6 @@ if (!dropdownMenu.classList.contains('hidden')) {
 }});
 });
 
-
-///////////Ruang mainn
 const questionImage = document.getElementById("questionImage");
 const quizOverlay = document.getElementById("quizOverlay");
 
