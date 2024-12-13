@@ -52,16 +52,15 @@ function updateStatusOnServer(lapar, sehat, energi, senang) {
     });
 }
 
-
 document.getElementById('obatButton1').addEventListener('click', function() {
     console.log('Button Obat 1 clicked');
-    updateSehat(10);
+    updateSehat(20);
 });
 document.getElementById('obatButton2').addEventListener('click', function() {
     console.log('Button Obat 2 clicked');
-    updateSehat(10);
+    updateSehat(20);
 });
 document.getElementById('obatButton3').addEventListener('click', function() {
     console.log('Button Obat 3 clicked');
-    updateSehat(10);
+    updateSehat(20);
 });

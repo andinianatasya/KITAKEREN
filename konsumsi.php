@@ -1,62 +1,51 @@
 <?php
-$host = "localhost";
-$dbname = "Kitcat";
-$user = "postgres";
-$password = "Medan2005";
+session_start();
 
-try {
-    $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Koneksi gagal: " . $e->getMessage());
+$servername = "localhost";
+$username = "anata_user";
+$password = "Medan2005";
+$dbname = "anata_kitcat";
+
+$conn = pg_connect("host=$servername dbname=$dbname user=$username password=$password");
+
+if (!$conn) {
+    die("Connection failed: " . pg_last_error());
 }
 
-// Mendapatkan data dari request
-$data = json_decode(file_get_contents("php://input"), true);
-$id_produk = $data['id_produk'] ?? null; // Menggunakan null coalescing operator
+$user_id = $_SESSION['user_id'];
 
-if ($id_produk === null) {
-    echo json_encode(['status' => 'gagal', 'message' => 'ID produk tidak diberikan.']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produk'])) {
+    $id_produk = intval($_POST['id_produk']);
+
+    $query = "SELECT jumlah_produk FROM penyimpanan WHERE id = $user_id AND id_produk = $id_produk";
+    $result = pg_query($conn, $query);
+
+    if ($result && pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        $jumlah_produk = $row['jumlah_produk'];
+
+        if ($jumlah_produk > 1) {
+            $updateQuery = "UPDATE penyimpanan SET jumlah_produk = jumlah_produk - 1 WHERE id = $user_id AND id_produk = $id_produk";
+            pg_query($conn, $updateQuery);
+            echo json_encode(["status" => "success", "message" => "Produk diperbarui"]);
+        } else {
+            $deleteQuery = "DELETE FROM penyimpanan WHERE id = $user_id AND id_produk = $id_produk";
+            pg_query($conn, $deleteQuery);
+            echo json_encode(["status" => "success", "message" => "Produk dihapus"]);
+        }
+    } else {
+        echo json_encode(["status" => "error", "message" => "Produk tidak ditemukan"]);
+    }
+
     exit;
 }
 
-try {
-    // Mulai transaksi
-    $pdo->beginTransaction();
+$query = "SELECT id_produk FROM penyimpanan WHERE id = $user_id";
+$result = pg_query($conn, $query);
 
-    // Update jumlah_konsumsi
-    $stmt = $pdo->prepare("UPDATE penyimpanan SET jumlah_konsumsi = jumlah_konsumsi + 1 WHERE id_produk = :id_produk");
-    $stmt->execute([':id_produk' => $id_produk]);
-
-    // Cek jumlah_konsumsi
-    $stmt = $pdo->prepare("SELECT jumlah_konsumsi FROM penyimpanan WHERE id_produk = :id_produk");
-    $stmt->execute([':id_produk' => $id_produk]);
-    
-    // Ambil hasil
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // Jika tidak ada hasil, berarti produk tidak ditemukan
-    if ($result === false) {
-        throw new Exception("Produk tidak ditemukan dalam penyimpanan.");
-    }
-
-    // Jika jumlah_konsumsi mencapai 10, hapus produk dari tabel penyimpanan
-    if ($result['jumlah_konsumsi'] >= 10) {
-        $stmt = $pdo->prepare("DELETE FROM penyimpanan WHERE id_produk = :id_produk");
-        $stmt->execute([':id_produk' => $id_produk]);
-        $message = "Produk telah dihapus dari penyimpanan.";
-    } else {
-        $message = "Jumlah konsumsi produk bertambah.";
-    }
-
-    // Commit transaksi
-    $pdo->commit();
-
-    // Mengirimkan response
-    echo json_encode(['status' => 'sukses', 'message' => $message]);
-} catch (Exception $e) {
-    // Rollback transaksi jika terjadi kesalahan
-    $pdo->rollBack();
-    echo json_encode(['status' => 'gagal', 'message' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+$ids = [];
+while ($row = pg_fetch_assoc($result)) {
+    $ids[] = $row['id_produk'];
 }
+
 ?>

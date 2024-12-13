@@ -2,8 +2,8 @@
 session_start();
 
 $host = "localhost";
-$dbname = "Kitcat";
-$user = "postgres";
+$dbname = "anata_kitcat";
+$user = "anata_user";
 $password = "Medan2005"; 
 
 try {

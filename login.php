@@ -1,8 +1,8 @@
 <?php
 session_start();
 $host = "localhost";
-$dbname = "Kitcat";
-$user = "postgres";
+$dbname = "anata_kitcat";
+$user = "anata_user";
 $pass = "Medan2005";
 
 try {
@@ -13,7 +13,6 @@ try {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
 
-        // Validasi input
         if (empty($username) || empty($password)) {
             echo "<script>
                 alert('Nama pengguna dan kata sandi harus diisi.');
@@ -49,7 +48,6 @@ try {
         }
     }
 
-    // Endpoint GET untuk mendapatkan user_id jika login
     if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['get_user_id'])) {
         header('Content-Type: application/json');
         if (isset($_SESSION['user_id'])) {

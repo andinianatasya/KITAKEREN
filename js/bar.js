@@ -17,7 +17,6 @@ function decreaseAllStatusBars() {
         });
 }
 
-// Fungsi untuk memperbarui tampilan status bar di UI
 function updateBarsDisplay(lapar, sehat, energi, senang) {
     document.getElementById('status_bar_lapar').style.width = lapar + '%';
     document.getElementById('laparBar').textContent = lapar + '%';
@@ -54,7 +53,7 @@ function updateStatusOnServer(lapar, sehat, energi, senang) {
     });
 }
 
-setInterval(decreaseAllStatusBars, 5000);
+setInterval(decreaseAllStatusBars, 15000);
 
 window.onload = function() {
     fetch('ambilStatusBar.php')

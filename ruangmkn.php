@@ -2,9 +2,9 @@
 session_start();
 
 $servername = "localhost";
-$username = "postgres";
-$password = "Miskagi8282";
-$dbname = "Kitcat";
+$username = "anata_user";
+$password = "Medan2005";
+$dbname = "anata_kitcat";
 
 $conn = pg_connect("host=$servername dbname=$dbname user=$username password=$password");
 
@@ -12,10 +12,8 @@ if (!$conn) {
     die("Connection failed: " . pg_last_error());
 }
 
-// Mendapatkan id user dari session
 $user_id = $_SESSION['user_id'];
 
-// AJAX Handler untuk menangani POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produk'])) {
     $id_produk = intval($_POST['id_produk']);
 
@@ -42,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produk'])) {
     exit;
 }
 
-// Query untuk menampilkan data
 $query = "SELECT id_produk FROM penyimpanan WHERE id = $user_id";
 $result = pg_query($conn, $query);
 
@@ -58,12 +55,13 @@ while ($row = pg_fetch_assoc($result)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="dist/output.css?v=1.0" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
     <link rel="icon" href="img/logo(1).png" type="image/png">
     <style>
         .ga-aktif{
             opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
         }
     </style>
     <title>Ruang Makan</title>
@@ -71,14 +69,14 @@ while ($row = pg_fetch_assoc($result)) {
 
 <body class="overflow-hidden">
     <div class="bg-bgDapur bg-cover bg-center absolute inset-0 flex justify-center items-center">
-        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 mt-20 cursor-pointer">
+        <img id="catImage" src="<?php echo htmlspecialchars($path_gambar); ?>" alt="Kucing" class="h-80 mt-20 cursor-pointer">
         <audio id="meong" src="img/meow.mp3"></audio>
     </div>
 
     <nav class="fixed top-0 left-0 right-0 bg-oren p-2">
         <ul class="flex justify-around items-center">
             <li class="text-center hover:opacity-50 duration-300">
-                <a href="profil.php?ruangan=beranda.html" class="flex items-center">
+                <a href="profil.php?ruangan=ruangmkn.php" class="flex items-center">
                     <img src="img/profil.svg" alt="Profil Icon" class="flex flex-col items-center w-10 h-10 mb-1">
                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Profil</span>
                 </a>
@@ -87,7 +85,7 @@ while ($row = pg_fetch_assoc($result)) {
 
             <li class="text-center">
                 <button id="dropdownButton" class="flex items-center hover:opacity-50 duration-300">
-                    <img src="img/icon rumah kitcat.svg" alt="ruangan" class="w-10 h-10 mb-1">
+                    <img src="img/iconruangan.png" alt="ruangan" class="w-10 h-10 mb-1">
                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruangan</span>
                 </button>
             
@@ -96,7 +94,7 @@ while ($row = pg_fetch_assoc($result)) {
                         <li>
                             <button class="hover:opacity-50 duration-300">
                                 <a href="beranda.html" class="flex items-center" class="">
-                                    <img src="img/beranda.svg" alt="Ruang Makan" class="w-16 mb-1">
+                                    <img src="img/iconruangtamu.png" alt="Ruang Tamu" class="w-16 mb-1">
                                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tamu</span>
                                 </a>
                             </button>
@@ -104,7 +102,7 @@ while ($row = pg_fetch_assoc($result)) {
                         <li>
                             <button class="hover:opacity-50 duration-300">
                                 <a href="ruangmkn.php" class="flex items-center">
-                                    <img src="img/makan.svg" alt="Ruang Makan" class="w-16 mb-1">
+                                    <img src="img/iconmakan.png" alt="Ruang Makan" class="w-16 mb-1">
                                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Makan</span>
                                 </a>
                             </button>
@@ -112,7 +110,7 @@ while ($row = pg_fetch_assoc($result)) {
                         <li>
                             <button class="hover:opacity-50 duration-300">
                                 <a href="ruangtdr.html" class="flex items-center">
-                                    <img class="w-16 mb-1" src="img/tidur.svg" alt="Ruang Tidur">
+                                    <img class="w-16 mb-1" src="img/icontidur.png" alt="Ruang Tidur">
                                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tidur</span>
                                 </a>
                             </button>                 
@@ -120,7 +118,7 @@ while ($row = pg_fetch_assoc($result)) {
                         <li>
                             <button class="hover:opacity-50 duration-300">
                                 <a href="ruangmain.html" class="flex items-center">
-                                    <img class="w-16 mb-1" src="img/main.svg" alt="Ruang Main">
+                                    <img class="w-16 mb-1" src="img/iconmain.png" alt="Ruang Main">
                                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Main</span>
                                 </a>
                             </button>                                
@@ -128,7 +126,7 @@ while ($row = pg_fetch_assoc($result)) {
                         <li>
                             <button class="hover:opacity-50 duration-300">
                                 <a href="ruangmandi.html" class="flex items-center">
-                                    <img class="w-16 mb-1" src="img/mandi.svg" alt="">
+                                    <img class="w-16 mb-1" src="img/iconmandi.png" alt="">
                                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Mandi</span>
                                 </a>
                             </button>                               
@@ -140,7 +138,7 @@ while ($row = pg_fetch_assoc($result)) {
             <li class="text-center hover:opacity-50 duration-300">
                 <a href="#" class="flex items-center">
                     <img id="bukaChat" src="img/chat.svg" alt="Chat Icon" class="w-10 mb-1">
-                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Obrolan Global</span>
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold" >Obrolan Global</span>
                 </a>
                 
             </li>
@@ -150,19 +148,19 @@ while ($row = pg_fetch_assoc($result)) {
     <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4 px-5 scroll-pl-6 snap-x overflow-x-auto">
         <div class="flex space-x-5">
 
-            <button id="1" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan" disabled onclick="updateExp('makanan1')">
+            <button id="4" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan" disabled onclick="updateExp('makanan1')">
                 <img id="makanButton1" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/ikan.svg" alt="makanan">
             </button>
 
             <button id="2" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan" disabled onclick="updateExp('makanan2')">
-                <img id="obatButton1" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat1.png" alt="obat">
+                <img id="obatButton1" class="obat rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat1.png" alt="obat">
             </button> 
 
             <button id="3" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan" disabled onclick="updateExp('makanan3')">
                 <img id="makanButton2" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/sayur.svg" alt="makanan">
             </button>
 
-            <button  id="4" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan" disabled onclick="updateExp('makanan4')">
+            <button id="1" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan" disabled onclick="updateExp('makanan4')">
                 <img id="makanButton3" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/makanan1.png" alt="makanan">
             </button>
 
@@ -183,21 +181,18 @@ while ($row = pg_fetch_assoc($result)) {
             </button> 
 
             <button id="10" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan" disabled onclick="updateExp('makanan10')">
-                <img id="obatButton2" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat2.png" alt="obat">
+                <img id="obatButton2" class="obat rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat2.png" alt="obat">
             </button>   
           
-            <button id="11" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan " disabled  onclick="updateExp('makanan11')">
-                <img id="obatButton3" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat3.png" alt="obat">
+            <button id="11" class="w-16 h-16 shadow-cartoon rounded-full snap-start ga-aktif makan" disabled onclick="updateExp('makanan11')">
+                <img id="obatButton3" class="obat rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat3.png" alt="obat">
             </button>   
         </div>
     </div>
 
-
     <script>
-    // Data dari PHP
     const enabledIds = <?php echo json_encode($ids); ?>;
 
-    // Aktifkan tombol sesuai data dari server
     enabledIds.forEach(id => {
         const button = document.getElementById(id);
         if (button) {
@@ -211,13 +206,13 @@ while ($row = pg_fetch_assoc($result)) {
         fetch('', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: id_produk=${id_produk}
+            body: `id_produk=${id_produk}`,
         })
         .then(response => response.json())
         .then(data => {
             alert(data.message);
             if (data.status === "success") {
-                location.reload(); // Reload halaman untuk update UI
+                location.reload();
             }
         })
         .catch(error => {
@@ -234,6 +229,6 @@ while ($row = pg_fetch_assoc($result)) {
     <script src="js/updateBarSehat.js"></script>
     <script src="js/bar.js"></script>
     <script src="js/exp.js"></script>
-    
+    <script src="js/gambarkucing.js"></script>
 </body>
 </html>

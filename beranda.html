@@ -110,7 +110,6 @@
                     </div>
                 </div>
 
-                <!-- Bar dan gambar Lapar -->
                 <div class="flex items-center space-x-2">
                     <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
                         <img src="img/barlapar.png" alt="Kelaparan" class="rounded-full">
@@ -150,10 +149,10 @@
     
     <div id="belanja" class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm hidden">
         <div class="flex items-center justify-center h-full">
-            <div class="bg-gradient-to-bl from-merah to-cream p-5 rounded-lg max-w-xl w-full text-center m-5 md:m-0">
+            <div class="bg-gradient-to-br from-white to-oren p-5 rounded-lg max-w-xl w-full text-center m-5 md:m-0">
                 <div class="flex items-center gap-2">
-                    <img src="img/koin.svg" alt="Coin" class="h-8">
-                    <span id="jumlahKoin" class="text-white text-xs font-semibold"></span>
+                    <img src="img/koin.svg" alt="Coin" class="h-10">
+                    <span id="jumlahKoin" class="text-oren text-xl font-bold">10</span>
                 </div>
                 <div id="menuUtama" class="grid grid-cols-2 gap-4">
                     <div>
@@ -166,71 +165,66 @@
                     </div>
                 </div>
 
-                <!-- Menu Makanan-->
                 <div id="menuMakan" class="hidden">
-
-                    <!-- <div class="grid grid-cols-2 md:grid-cols-5 gap-4 overflow-y-auto max-h-[400px]"> -->
-                    <div class="grid grid-cols-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 overflow-y-auto h-80">
                         <div class="flex flex-col items-center">
                             <img src="img/makanan1.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button data-id_produk="1" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25">25 Koin</button>
+                            <button data-id_produk="1" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold mb-2" hargaItem="25">25 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/minum.svg" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button data-id_produk="7" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25">15 Koin</>
+                            <button data-id_produk="7" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold mb-2" hargaItem="25">15 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/makanan3.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button data-id_produk="3" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25">25 Koin</>
+                            <button data-id_produk="3" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold mb-2" hargaItem="25">25 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/minuman1.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button data-id_produk="8" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="15">15 Koin</>
+                            <button data-id_produk="8" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold mb-2" hargaItem="15">15 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/minuman2.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button data-id_produk="9" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="15">15 Koin</>
+                            <button data-id_produk="9" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold mb-2" hargaItem="15">15 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/obat1.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button data-id_produk="2" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">20 Koin</>
+                            <button data-id_produk="2" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold mb-2" hargaItem="20">20 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/obat2.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button data-id_produk="10" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">20 Koin</>
+                            <button data-id_produk="10" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold mb-2" hargaItem="20">20 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/sayur.svg" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button data-id_produk="5" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">25 Koin</button>
+                            <button data-id_produk="5" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold mb-2" hargaItem="20">25 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/ikan.svg" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button data-id_produk="4" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">25 Koin</button>
+                            <button data-id_produk="4" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold mb-2" hargaItem="20">25 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/obat3.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button data-id_produk="11"  class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">20 Koin</button>
+                            <button data-id_produk="11"  class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold mb-2" hargaItem="20">20 Koin</button>
                         </div>
                     </div>
                     <button id="backToMenuMakan" class="mt-4 px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Kembali</button>
                 </div>
                 
-    
-                <!-- Menu Kustom -->
                 <div id="menuKustom" class="hidden">
                     <div class="grid grid-cols-3 gap-4">
                         <div class="flex flex-col items-center">
 
                             <img src="img/Motif1.png" alt="Kustom 1" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="100" data-motif="1">100 Koin</button>
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 belimotif text-xs font-semibold" onclick="location.reload();" data-harga="100" data-motif="motif1">100 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/Motif2.png" alt="Kustom 2" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="100" data-motif="2">100 Koin</button>
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 belimotif text-xs font-semibold" onclick="location.reload();" data-harga="100" data-motif="motif2">100 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/Motif3.png" alt="Kustom 3" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="100" data-motif="3">100 Koin</button>
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 belimotif text-xs font-semibold" onclick="location.reload();" data-harga="100" data-motif="motif3">100 Koin</button>
 
                         </div>
                     </div>
@@ -245,13 +239,10 @@
     <script src="js/index.js"></script>
     <script src="js/chatglobal.js"></script>
     <script src="js/bar.js"></script>
-    <script src="js/belanja.js"></script>
-    <script src="js/interaksiKucing.js"></script>
     <script src="js/koin.js"></script>
-    <script src="js/updateBarEnergi.js"></script>
-    <script src="js/updateBarLapar.js"></script>
-    <script src="js/updateBarSehat.js"></script>
-    <script src="js/updateBarSenang.js"></script>
+    <script src="js/belanja.js"></script>
+    <script src="js/belimotif.js"></script>
+    <script src="js/interaksiKucing.js"></script>
     <script src="js/gambarkucing.js"></script>
 </body>
 </html>

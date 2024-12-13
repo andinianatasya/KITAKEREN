@@ -3,8 +3,8 @@ session_start();
 header('Content-Type: application/json');
 
 $host = "localhost";
-$dbname = "Kitcat";
-$user = "postgres";
+$dbname = "anata_kitcat";
+$user = "anata_user";
 $password = "Medan2005"; 
 
 try {
@@ -15,11 +15,9 @@ try {
     exit;
 }
 
-// Fungsi untuk mengurangi koin dan menambah produk ke penyimpanan
 function beliItems($userId, $id_produk, $harga) {
     global $pdo;
 
-    // Periksa apakah user memiliki cukup koin
     $stmt = $pdo->prepare("SELECT koin FROM userkitcat WHERE id = :user_id");
     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $stmt->execute();
@@ -28,13 +26,12 @@ function beliItems($userId, $id_produk, $harga) {
     if ($result) {
         $currentKoin = $result['koin'];
         if ($currentKoin >= $harga) {
-            // Kurangi koin
+
             $stmt = $pdo->prepare("UPDATE userkitcat SET koin = koin - :harga WHERE id = :user_id");
             $stmt->bindParam(':harga', $harga, PDO::PARAM_INT);
             $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
             $stmt->execute();
 
-            // Tambahkan ke penyimpanan jika belum ada
             $stmt = $pdo->prepare("SELECT * FROM penyimpanan WHERE id_produk = :id_produk AND id = :user_id");
             $stmt->execute(['id_produk' => $id_produk, 'user_id' => $userId]);
             
@@ -68,7 +65,6 @@ if (isset($data->id_produk)) {
         $userId = $_SESSION['user_id'];
         $id_produk = $data->id_produk;
 
-        // Ambil harga produk dari tabel toko
         $stmt = $pdo->prepare("SELECT harga FROM toko WHERE id_produk = :id_produk");
         $stmt->bindParam(':id_produk', $id_produk, PDO::PARAM_INT);
         $stmt->execute();
@@ -88,3 +84,4 @@ if (isset($data->id_produk)) {
     echo json_encode(["status" => "terjadi kesalahan", "message" => "ID produk tidak diberikan."]);
 }
 ?>
+

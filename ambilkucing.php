@@ -1,8 +1,8 @@
 <?php
 session_start();
 $host = "localhost";
-$dbname = "Kitcat";
-$user = "postgres";
+$dbname = "anata_kitcat";
+$user = "anata_user";
 $password = "Medan2005"; 
 
 try {
@@ -51,10 +51,11 @@ if ($stmt->rowCount() > 0) {
 
 $path_gambar = '';
 $kondisi = '';
+
+
 $isSleeping = isset($_POST['isSleeping']) ? $_POST['isSleeping'] : false;
 
 if ($isSleeping) {
-    // Mengatur gambar tidur berdasarkan umur dan motif
     if ($umur == 'bayi') {
         $path_gambar = $kucing['motif'] ? "img/{$kucing['motif']}/tidur_bayi.png" : 'img/tidur_bayi.png';
     } elseif ($umur == 'anak') {
@@ -62,7 +63,17 @@ if ($isSleeping) {
     } else { 
         $path_gambar = $kucing['motif'] ? "img/{$kucing['motif']}/tidur_dewasa.png" : 'img/tidur_dewasa.png';
     }
-}else { if ($umur == 'bayi') {
+} else {
+    if ($umur == 'bayi') {
+        $path_gambar = $kucing['motif'] ? "img/{$kucing['motif']}/default_bayi.png" : 'img/default_bayi.png';
+    } elseif ($umur == 'anak') {
+        $path_gambar = $kucing['motif'] ? "img/{$kucing['motif']}/default_anak.png" : 'img/default_anak.png';
+    } else {
+        $path_gambar = $kucing['motif'] ? "img/{$kucing['motif']}/default_dewasa.png" : 'img/default_dewasa.png';
+    }
+}
+
+if ($umur == 'bayi') {
     if ($kucing['lapar'] < 10 && $kucing['energi'] < 10) {
         $kondisi = 'ngantuk';
         $path_gambar = 'img/ngantuk_bayi.png';
@@ -92,7 +103,7 @@ if ($isSleeping) {
     } else {
         $path_gambar = 'img/default_dewasa.png'; 
     }
-}}
+}
 
 if (isset($kucing['motif'])) {
     if ($kucing['motif'] == 'motif1') {
