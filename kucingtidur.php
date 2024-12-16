@@ -1,17 +1,7 @@
 <?php
 session_start();
 
-$host = "localhost";
-$user = "anata_user";
-$pass = "Medan2005"; 
-$dbname = "anata_kitcat"; 
-
-try {
-    $conn = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
-}
+include 'db_koneksi.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(["status" => "error", "message" => "User ID tidak ditemukan."]);

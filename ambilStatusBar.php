@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$servername = "localhost";
-$username = "anata_user";
+$servername = "aws-0-ap-southeast-1.pooler.supabase.com";
+$username = "postgres.xjkvjyrwkjcarvjeywvt";
 $password = "Medan2005";
-$dbname = "anata_kitcat";
+$dbname = "kitcat";
 
 $conn = pg_connect("host=$servername dbname=$dbname user=$username password=$password");
 

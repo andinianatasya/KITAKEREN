@@ -1,14 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "anata_user";
-$password = "Medan2005";
-$dbname = "anata_kitcat";
+session_start();
+include 'db_koneksi.php';
 
-$conn = pg_connect("host=$servername dbname=$dbname user=$username password=$password");
-
-if (!$conn) {
-    die("Connection failed: " . pg_last_error());
-}
 $query = pg_query($conn,"SELECT id, avatar, username, maxpoint ,koin FROM userkitcat ORDER BY koin DESC");
 ?>
 
