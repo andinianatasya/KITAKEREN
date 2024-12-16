@@ -1,16 +1,7 @@
 <?php
 session_start();
 
-$servername = "localhost";
-$username = "anata_user";
-$password = "Medan2005";
-$dbname = "anata_kitcat";
-
-$conn = pg_connect("host=$servername dbname=$dbname user=$username password=$password");
-
-if (!$conn) {
-    die("Connection failed: " . pg_last_error());
-}
+include 'db_koneksi.php';
 
 $user_id = $_SESSION['user_id'];
 

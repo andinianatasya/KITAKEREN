@@ -1,18 +1,19 @@
 <?php
 session_start();
-$host = "localhost";
-$dbname = "anata_kitcat";
-$user = "anata_user";
+$host = "aws-0-ap-southeast-1.pooler.supabase.com";
+$port = '6543';
+$dbname = "postgres";
+$user = "postgres.xjkvjyrwkjcarvjeywvt";
 $pass = "Medan2005";
 
 try {
-    $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['username'];
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        // Cek apakah username sudah ada ><
+        
         $stmt = $pdo->prepare("SELECT * FROM userkitcat WHERE username = :username");
         $stmt->execute(['username' => $username]);
 
